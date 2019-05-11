@@ -48,7 +48,7 @@ void loop() {
     dritte Dimension enthält RGB Wert für adressiertes Pixel
   */
   int matrix[14][14][3];
-  matrix = Serial.read();
+//  matrix = Serial.read();
 
   int bytesRead = 0;
   int i = 0;
