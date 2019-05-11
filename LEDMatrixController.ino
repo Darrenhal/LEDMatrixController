@@ -4,13 +4,13 @@
 #endif
 
 /*Definieren der Output-Pins für die ersten 7 LED Streifen*/
-#define PINROW 0
-#define PINROW 1
-#define PINROW 2
-#define PINROW 3
-#define PINROW 4
-#define PINROW 5
-#define PINROW 6
+#define PINROW0 0
+#define PINROW1 1
+#define PINROW2 2
+#define PINROW3 3
+#define PINROW4 4
+#define PINROW5 5
+#define PINROW6 6
 
 #define NUMPIXELS 14 //Anzahl der Pixel pro Reihe
 
@@ -75,7 +75,12 @@ void loop() {
   /*Iterieren über Anzahl der Pixels pro Reihe und setzen der RGB Werte
     Danach erneutes iterieren, um die neuen Pixel-Farben anzuzeigen*/
   for (int i = 0; i < NUMPIXELS; i++) {
+    for (int j = 0; j < NUMSTRIPS; j ++) {
+      row[i].setPixelColor(j, row[i].Color(matrix[i][j][0], matrix[i][j][1], matrix[i][j][2]));
+    }
+  }
 
+/*
     row[0].setPixelColor(i, row[0].Color(255, i * 5, 0));
     row[1].setPixelColor(i, row[1].Color(0, i * 5, 255));
     row[2].setPixelColor(i, row[2].Color(255, i * 5, 255));
@@ -83,10 +88,11 @@ void loop() {
     row[4].setPixelColor(i, row[4].Color(255, i * 5, i * 5));
     row[5].setPixelColor(i, row[5].Color(0, i * 5, 0));
     row[6].setPixelColor(i, row[6].Color(0, 0, i * 5));
+*/
 
     for (int i = 0; i < NUMSTRIPS; i++) {
       row[i].show();
     }
 
-    delay(DELAY); //10ms warten bevor loop() erneut durchlaufen wird
+//    delay(DELAY); //10ms warten bevor loop() erneut durchlaufen wird
   }
