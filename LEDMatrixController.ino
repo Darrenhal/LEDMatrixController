@@ -48,21 +48,23 @@ void loop() {
     dritte Dimension enthält RGB Wert für adressiertes Pixel
   */
   int matrix[14][14][3];
-//  matrix = Serial.read();
+  //  matrix = Serial.read();
 
-  int bytesRead = 0;
+  int integerRead = 0;
   int i = 0;
   int j = 0;
 
-  while (bytesRead < 2352) {
+  while (integerRead < 588) {
     if (Serial.available >= 12) {
-      for (i < 14; i++) {
-        for (j < 14; i++) {
-          matrix[i][j][0] = Serial.parseInt();
-          matrix[i][j][1] = Serial.parseInt();
-          matrix[i][j][2] = Serial.parseInt();
-          bytesRead += 12;
-        }
+      matrix[i][j][0] = Serial.parseInt();
+      matrix[i][j][1] = Serial.parseInt();
+      matrix[i][j][2] = Serial.parseInt();
+      integerRead += 3;
+      if (j < 14) {
+        j++;
+      } else {
+        j = 0;
+        i++;
       }
     }
   }
@@ -80,19 +82,19 @@ void loop() {
     }
   }
 
-/*
-    row[0].setPixelColor(i, row[0].Color(255, i * 5, 0));
-    row[1].setPixelColor(i, row[1].Color(0, i * 5, 255));
-    row[2].setPixelColor(i, row[2].Color(255, i * 5, 255));
-    row[3].setPixelColor(i, row[3].Color(i * 5, i * 5, 255));
-    row[4].setPixelColor(i, row[4].Color(255, i * 5, i * 5));
-    row[5].setPixelColor(i, row[5].Color(0, i * 5, 0));
-    row[6].setPixelColor(i, row[6].Color(0, 0, i * 5));
-*/
+  /*
+      row[0].setPixelColor(i, row[0].Color(255, i * 5, 0));
+      row[1].setPixelColor(i, row[1].Color(0, i * 5, 255));
+      row[2].setPixelColor(i, row[2].Color(255, i * 5, 255));
+      row[3].setPixelColor(i, row[3].Color(i * 5, i * 5, 255));
+      row[4].setPixelColor(i, row[4].Color(255, i * 5, i * 5));
+      row[5].setPixelColor(i, row[5].Color(0, i * 5, 0));
+      row[6].setPixelColor(i, row[6].Color(0, 0, i * 5));
+  */
 
-    for (int i = 0; i < NUMSTRIPS; i++) {
-      row[i].show();
-    }
-
-//    delay(DELAY); //10ms warten bevor loop() erneut durchlaufen wird
+  for (int i = 0; i < NUMSTRIPS; i++) {
+    row[i].show();
   }
+
+  //    delay(DELAY); //10ms warten bevor loop() erneut durchlaufen wird
+}
