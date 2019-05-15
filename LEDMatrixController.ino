@@ -66,6 +66,8 @@ void loop() {
     row[i].clear();
   }
 
+  row[5].clear();
+
   //delay(DELAY);
 
   row[0].setPixelColor(0, row[0].Color(255, 0, 0));
@@ -74,7 +76,7 @@ void loop() {
   row[3].setPixelColor(0, row[3].Color(255, 0, 255));
   row[3].setPixelColor(counter, row[3].Color(0, 255, 255));
   row[4].setPixelColor(0, row[4].Color(255, 255, 0));
-  row[5].setPixelColor(0, row[5].Color(255, 0, 0));
+  row[5].setPixelColor(0, row[5].Color(0, 0, 0));
   row[6].setPixelColor(0, row[6].Color(0, 0, 255));
   row[0].show();
   row[1].show();
@@ -93,6 +95,7 @@ void loop() {
 if(Serial.available()) {
   matrix[5][5][1] = Serial.parseInt();
   row[5].setPixelColor(5, row[5].Color(0, matrix[5][5][1], 0));
+  row[5].show();
 }
 
 /*
