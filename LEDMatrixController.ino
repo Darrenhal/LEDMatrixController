@@ -1,4 +1,3 @@
-#include <ArduinoJson.h>
 #include <Adafruit_NeoPixel.h>
 
 #ifdef __AVR__
@@ -76,7 +75,6 @@ void process() {
       for (int k = 0; k < 3; k++) {
         values[i][j][k] = input[r];
         r++;
-        Serial.print(values[i][j][k]);
       }
     }
   }
@@ -93,8 +91,8 @@ void paint() {
       g = values[i][j][1];
       b = values[i][j][2];
       row[i].setPixelColor(j, row[i].Color(r, g, b));
-      row[i].show();
     }
+    row[i].show();
   }
 }
 
@@ -103,7 +101,7 @@ void loop() {
 
   while (Serial.available()) {
     in = Serial.read();
-    if(in < 0) {
+    if (in < 0) {
       input[c] = in + 256;
     } else {
       input[c] = in;
@@ -111,9 +109,9 @@ void loop() {
     if (c < 587) {
       c++;
     } else {
+      c = 0;
       process();
       paint();
-      c = 0;
     }
   }
 
